@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "cn.zhuangh7.contact"
         minSdkVersion 23
@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.r0adkll:slidableactivity:2.0.5'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
 }

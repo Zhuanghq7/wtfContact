@@ -37,8 +37,22 @@ public class dataBase {
     }
 
     public ArrayList<contacter> getContacts(int id_b, int id_e){
+        //TODO if the parameter is -1,-1 then return all
         ArrayList<contacter> result = new ArrayList<>(id_e-id_b);
         if(isInit){
+            if(id_b == -1 && id_e == -1){
+                Cursor cursor = mDateBase.rawQuery("select ID,name,addr,tel_m,tel_s from Contact",null);
+                while (cursor.moveToNext()) {
+                    int ID = cursor.getInt(0);
+                    String name = cursor.getString(1);
+                    String addr = cursor.getString(2);
+                    String tel_m = cursor.getString(3);
+                    String tel_s = cursor.getString(4);
+                    result.add(contacter.newContact(ID, name, addr, tel_m, tel_s));
+                }
+                cursor.close();
+                return result;
+            }
             try {
                 Cursor cursor = mDateBase.rawQuery("select ID,name,addr,tel_m,tel_s from Contact where ID >=? and ID <=?", new String[]{"" + id_b, "" + id_e});
                 while (cursor.moveToNext()) {
