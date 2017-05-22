@@ -1,12 +1,14 @@
 package cn.zhuangh7.contact;
 
+import java.io.Serializable;
+
 /**
  * Using to provid a two kind of layout itemlist
  * <p>
  * Created by Zhuangh7 on 2017/5/18.HUAWEI_SB
  */
 
-public class contacter {
+public class contacter implements Serializable{
     public String getName() {
         return name;
     }

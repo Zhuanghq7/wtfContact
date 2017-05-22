@@ -1,6 +1,9 @@
 package cn.zhuangh7.contact;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +48,17 @@ public class mainAdatper extends RecyclerView.Adapter<mainAdatper.MyViewHolder> 
         holder.ming.setText(data.get(position).getName().substring(1));
         holder.addr.setText(data.get(position).getAddr());
         holder.tel.setText(data.get(position).getTel_m());
-
+        final int temp = position;
+        holder.v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("Contacter",data.get(temp));
+                intent.putExtra("position",temp);
+                intent.setClass(context,DetailActivity.class);
+                ((Activity)context).startActivityForResult(intent,1);
+            }
+        });
     }
 
     @Override
@@ -59,9 +72,11 @@ public class mainAdatper extends RecyclerView.Adapter<mainAdatper.MyViewHolder> 
         private TextView ming;
         private TextView addr;
         private TextView tel;
+        private View v;
 
         private MyViewHolder(View view) {
             super(view);
+            v = view;
             xing = (TextView) view.findViewById(R.id.textView3);
             ming = (TextView) view.findViewById(R.id.textView4);
             addr = (TextView) view.findViewById(R.id.textView5);

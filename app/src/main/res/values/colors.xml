@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="newLight">#e0e0e0</color>
+    <color name="font_M">#494949</color>
+    <color name="font_S">#757575</color>
 </resources>

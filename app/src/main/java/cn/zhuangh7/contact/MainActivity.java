@@ -37,21 +37,18 @@ public class MainActivity extends MyActivity {
     private void initData(){
         db=new dataBase(this);
         data = db.getContacts(-1,-1);
+        db.close();
     }
     private void initView(){
         button = (Button) findViewById(R.id.button_1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity.this,DetailActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.act_in,R.anim.act_out);
-                db.newContact(""+id,"地址"+id,"18340861800","15355298095");
-                id++;
-                data=db.getContacts(-1,-1);
-                adatper.updatedata(data);
-                adatper.notifyDataSetChanged();
+                Intent intent = new Intent();
+                intent.putExtra("ifUpdate",false);
+                intent.setClass(MainActivity.this,UpdateActivity.class);
+                startActivityForResult(intent,3);
+
             }
         });
         slidrInterface.lock();
@@ -59,5 +56,41 @@ public class MainActivity extends MyActivity {
         adatper = new mainAdatper(data,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adatper);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&&resultCode==1){
+            //detail without delete
+            if(data.getBooleanExtra("ifChange",false))
+            {
+                contacter tempC = (contacter) data.getSerializableExtra("Contacter");
+                int position = data.getIntExtra("position",-1);
+                if(position!=-1){
+                    this.data.set(position,tempC);
+                    adatper.updatedata(this.data);
+                    adatper.notifyItemChanged(position);
+                    //TODO update the specific data
+                }
+            }
+        }
+        if(requestCode==1&&resultCode==2){
+            //detail and delete
+            int pos = data.getIntExtra("position",-1);
+            this.data.remove(pos);
+            adatper.updatedata(this.data);
+            adatper.notifyDataSetChanged();
+
+        }
+        if(requestCode==3&&resultCode==3){
+            //add new
+
+            contacter temp = (contacter)data.getSerializableExtra("Contacter");
+            this.data.add(temp);
+            adatper.updatedata(this.data);
+            adatper.notifyDataSetChanged();
+        }
     }
 }

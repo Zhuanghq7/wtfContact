@@ -4,25 +4,102 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray">
+    <RelativeLayout
+        android:id="@+id/asdfasdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:elevation="3dp"
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="100dp"
-        android:background="@color/colorAccent"
-        android:elevation="4dp"
-        android:layout_centerInParent="false"
-        android:layout_marginTop="100dp"
-        android:layout_width="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
-        <Button
-            android:text="Button"
+        <TextView
+            android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_2"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
-    </LinearLayout>
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:paddingStart="10dp"
+
+            android:text="@string/detail"
+            android:textColor="@color/newLight"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light"
+        android:layout_below="@+id/asdfasdf"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="1dp"
+                android:text="金奶糕"
+                android:textSize="100dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_tel_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="18340861800"
+                    android:textColor="@color/font_M"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/detail_tel_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="地址:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/detail_addr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="TextView"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/detail_edit"
+                style="@style/Base.Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="编辑" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>

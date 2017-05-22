@@ -81,7 +81,18 @@ public class dataBase {
         }
         return null;
     }
+    public int getIdByName(String name){
 
+        if(isInit){
+            Cursor cursor  = mDateBase.rawQuery("select ID from Contact where name = ?",new String[]{name});
+            while(cursor.moveToNext()){
+                int ID = cursor.getInt(0);
+                cursor.close();
+                return ID;
+            }
+        }
+        return -1;
+    }
     public int newContact(String name,String addr,String tel_m,String tel_s){
         //TODO 返回值 id(if successfully create) -1(if datebase init not complete yet or there is a same object already exist in this db) -2(if attr is illegal)
         if(isInit){
@@ -97,7 +108,7 @@ public class dataBase {
             if(tel_s==null){
                 tel_s="";
             }
-            Cursor cursore = mDateBase.rawQuery("select ID from Contact where name = ? and addr = ? and tel_m = ? and tel_s = ?", new String[]{name,addr,tel_m,tel_s});
+            Cursor cursore = mDateBase.rawQuery("select ID from Contact where name = ?", new String[]{name});
             if(cursore.getCount()!=0){
                 return -1;
             }
